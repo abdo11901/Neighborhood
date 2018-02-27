@@ -70,7 +70,7 @@ function VM() {
     MarkersAndThirdParty(this.List());
     this.FilterList = ko.computed(function () {
         info.close();
-        if (this.search() == "") {
+        if (this.search() === "") {
             ResetMarkers(this.List());
             return this.List();
         }
@@ -95,14 +95,14 @@ function VM() {
         info.setContent("<p>"+loc.content+"</p>");
         info.open(map, loc.marker);
 
-        loc.marker.setMap(null)
+        loc.marker.setMap(null);
         loc.marker.setMap(map);
         loc.marker.setAnimation(google.maps.Animation.DROP);
 
 
 //        loc.marker.setAnimation(google.maps.Animation
 //            .BOUNCE);
-    }
+    };
 
 }
 
