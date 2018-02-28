@@ -90,7 +90,7 @@ function VM() {
     }, this);
 
     this.showinfo = function (loc) {
-        if(marker!=null){
+        if(marker!=='null'){
             marker.setAnimation(null);
         }
         info.marker = loc.marker;
@@ -118,7 +118,7 @@ function MarkersAndThirdParty(list) {
             position: loc.location
         });
         loc.marker.addListener('click', function () {
-            if(marker!=null){
+            if(marker!=='null'){
                 marker.setAnimation(null);
             }
             info.marker = loc.marker;
