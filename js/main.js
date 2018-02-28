@@ -164,3 +164,7 @@ function init() {
 
     ko.applyBindings(viewModel);
 }
+
+function issue(){
+     alert("issue in the API");   
+}
