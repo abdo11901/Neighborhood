@@ -1,6 +1,6 @@
 var map;
 var info;
-
+var marker;
 var map_Places = [
     {
         title: 'Egypt',
@@ -90,15 +90,16 @@ function VM() {
     }, this);
 
     this.showinfo = function (loc) {
-        ResetMarkers(self.List());
+        if(marker!=null){
+            marker.setAnimation(null);
+        }
         info.marker = loc.marker;
         info.setContent("<p>"+loc.content+"</p>");
         info.open(map, loc.marker);
 
-        loc.marker.setMap(null);
         loc.marker.setMap(map);
-        loc.marker.setAnimation(google.maps.Animation.DROP);
-
+        loc.marker.setAnimation(google.maps.Animation.BOUNCE);
+        marker = loc.marker;
 
 //        loc.marker.setAnimation(google.maps.Animation
 //            .BOUNCE);
@@ -117,14 +118,14 @@ function MarkersAndThirdParty(list) {
             position: loc.location
         });
         loc.marker.addListener('click', function () {
-            ResetMarkers(list);
+            if(marker!=null){
+                marker.setAnimation(null);
+            }
             info.marker = loc.marker;
             info.setContent("<p>"+loc.content+"</p>");
             info.open(map, loc.marker);
-
-            loc.marker.setMap(null);
-            loc.marker.setMap(map);
-            loc.marker.setAnimation(google.maps.Animation.DROP);
+            loc.marker.setAnimation(google.maps.Animation.BOUNCE);
+            marker=loc.marker;
 
         });
         url = link + loc.location.lat + "," + loc.location.lng + auth;
@@ -147,8 +148,8 @@ function ResetMarkers(list) {
     var l = list.length;
     for (var i = 0; i < l; i++) {
         list[i].marker.setVisible(true);
-        list[i].marker.setAnimation(null);
-
+        list[i].marker.setAnimation(google.maps.Animation.DROP);
+        marker = null;
     }
 }
 
